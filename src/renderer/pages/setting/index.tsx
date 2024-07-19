@@ -1,7 +1,7 @@
 import { CssBaseline, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import icon from '../../../../assets/icon.svg';
-import { Layout } from '../../components/layout';
+import { Layout } from '../../../components/layout';
 
 export function Setting() {
   return (

@@ -1,10 +1,27 @@
 import { Box, Button, CssBaseline, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import { Layout } from '../../components/layout';
+import { Layout } from '../../../components/layout';
 import { Pencil2Icon } from '@radix-ui/react-icons'
-import { AppOperatorItem } from '../../components/app/appOperateItem';
+import { AppOperatorItem } from '../../../components/app/appOperateItem';
+import { useEffect, useState } from 'react';
 
 export function Manage() {
   const rows = [{'name':'grass','status':'active','des':'grass'},{'name':'io','status':'active','des':'io'}];
+  const [containers, setContainers] = useState<any>([]);
+
+  const getListContainers = async () =>{
+    try {
+      const result = await window.electron.listContainers();
+      setContainers(result);
+    } catch (error) {
+      setContainers([]);
+      console.error('Error Get Docker container:', error);
+    }
+  }
+  useEffect(()=>{
+    getListContainers()
+    return()=>{
+    }
+  },[])
 
   return (
     <Layout>
@@ -24,7 +41,7 @@ export function Manage() {
                 <TableCell>Dapp</TableCell>
                 <TableCell align="left">Description</TableCell>
                 <TableCell align="left">Status</TableCell>
-                <TableCell align="center">Operate</TableCell>
+                <TableCell align="center">Actions</TableCell>
                 <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
@@ -40,7 +57,7 @@ export function Manage() {
                   <TableCell align="left">{row.des}</TableCell>
                   <TableCell align="left">{row.status}</TableCell>
                   <TableCell align="center">
-                    <AppOperatorItem app={row.name}/>
+                    <AppOperatorItem appId={row.name}/>
                   </TableCell>
                   <TableCell align="left">
                     <Button size='small' sx={{bgcolor:'#bfdbfe', gap:1, display:'flex', alignItems:'center'}}>
@@ -53,7 +70,16 @@ export function Manage() {
             </TableBody>
           </Table>
         </TableContainer>
-
+        <h4>Docker Containers</h4>
+        <ul>
+          {containers.map((container:any) => (
+            <li key={container.Id}>
+              {container.Names[0]} - {container.State}
+              <button onClick={() => {}}>Start</button>
+              <button onClick={() => {}}>Stop</button>
+            </li>
+          ))}
+      </ul>
         </Box>
     </Layout>
   );

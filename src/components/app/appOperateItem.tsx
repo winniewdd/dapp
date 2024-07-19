@@ -3,10 +3,10 @@ import { StopIcon, PlayIcon, ReloadIcon } from '@radix-ui/react-icons'
 import clsx from 'clsx'
 
 interface AppOperateItemProps {
-  app: any
+  appId: any
 }
 
-export const AppOperatorItem: React.FC<AppOperateItemProps> = ({app})=>{
+export const AppOperatorItem: React.FC<AppOperateItemProps> = ({appId})=>{
   const actions = [
     {type: 'start', icon: PlayIcon, action: ()=>{}, disabled: false},
     {type: 'restart', icon: ReloadIcon, action: ()=>{}, disabled: false},

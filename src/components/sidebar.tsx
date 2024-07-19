@@ -1,7 +1,7 @@
 import { menus } from './MENU';
 import { Box, Grid, } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import icon from '../../../assets/icon.png'
+import icon from '../../assets/icon.png'
 import { ActivityLogIcon } from '@radix-ui/react-icons'
 
 export default function Sidebar() {

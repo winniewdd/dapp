@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+const { listContainers, startContainer, stopContainer, dockerService, listImages, checkContainerStatus,createContainer } = require('../hooks/docker');
 
 class AppUpdater {
   constructor() {
@@ -29,6 +30,33 @@ ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+ipcMain.handle('list-containers', async () => {
+  return listContainers();
+});
+
+ipcMain.handle('check-container', async (event, containerId) => {
+  return checkContainerStatus(containerId);
+});
+
+ipcMain.handle('create-container', async (event, imageName, containerName) => {
+  return createContainer(imageName,containerName);
+});
+
+ipcMain.handle('start-container', async (event, containerId) => {
+  return startContainer(containerId);
+});
+ipcMain.handle('stop-container', async (event, containerId) => {
+  return stopContainer(containerId);
+});
+
+ipcMain.handle('check-docker-service', async () => {
+  return dockerService();
+});
+
+ipcMain.handle('list-images', async () => {
+  return listImages();
 });
 
 if (process.env.NODE_ENV === 'production') {

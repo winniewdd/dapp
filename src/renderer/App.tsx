@@ -1,9 +1,9 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import './styles/App.css';
+import '../styles/App.css';
 import { Manage } from './pages/manage';
 import { Control} from './pages/control';
 import NotFound from './pages/404';
-import { Layout } from './components/layout';
+import { Layout } from '../components/layout';
 import { Setting } from './pages/setting';
 
 export default function App() {

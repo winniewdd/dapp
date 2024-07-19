@@ -22,6 +22,13 @@ const electronHandler = {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
   },
+  listContainers: () => ipcRenderer.invoke('list-containers'),
+  listImages: () => ipcRenderer.invoke('list-images'),
+  dockerService: () => ipcRenderer.invoke('check-docker-service'),
+  createContainer: (imageName: any, containerName:any) => ipcRenderer.invoke('create-container', imageName, containerName),
+  startContainer: (containerId: any) => ipcRenderer.invoke('start-container', containerId),
+  stopContainer: (containerId: any) => ipcRenderer.invoke('stop-container', containerId),
+  checkContainerStatus: (containerId: any) => ipcRenderer.invoke('check-container', containerId),
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);
