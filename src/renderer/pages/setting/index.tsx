@@ -1,6 +1,6 @@
 import { CssBaseline, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import icon from '../../../../assets/icon.svg';
+import bit from '../../../../assets/bit.jpg';
 import { Layout } from '../../../components/layout';
 
 export function Setting() {
@@ -11,7 +11,7 @@ export function Setting() {
           Setting
       </Typography>
       <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
+        <img width="200" alt="icon" src={bit} />
       </div>
     </Layout>
   );

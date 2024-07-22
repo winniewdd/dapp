@@ -90,11 +90,11 @@ export function Control() {
         </Grid>
         {!appStatus
         ?
-        <Button size='small' sx={{mt:4, bgcolor:'#bfdbfe'}} onClick={()=>{ handleCreateContainer('docker/welcome-to-docker','welcome-docker')}}>
+        <Button size='large' sx={{mt:4, width:'', bgcolor:'#bfdbfe'}} disabled={!dockerStatus} onClick={()=>{ handleCreateContainer('docker/welcome-to-docker','welcome-docker')}}>
           Start
         </Button>
         :
-        <Button size='small' sx={{mt:4, border:'2px solid #60a5fa', bgcolor:'#bfdbfe'}} onClick={()=>{handleStop('welcome-docker')}}>
+        <Button size='large' sx={{mt:4, width:'',  border:'2px solid #60a5fa', bgcolor:'#bfdbfe'}} disabled={!dockerStatus} onClick={()=>{handleStop('welcome-docker')}}>
           Stop
         </Button>
           }

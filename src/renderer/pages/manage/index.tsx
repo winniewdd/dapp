@@ -5,23 +5,7 @@ import { AppOperatorItem } from '../../../components/app/appOperateItem';
 import { useEffect, useState } from 'react';
 
 export function Manage() {
-  const rows = [{'name':'grass','status':'active','des':'grass'},{'name':'io','status':'active','des':'io'}];
-  const [containers, setContainers] = useState<any>([]);
-
-  const getListContainers = async () =>{
-    try {
-      const result = await window.electron.listContainers();
-      setContainers(result);
-    } catch (error) {
-      setContainers([]);
-      console.error('Error Get Docker container:', error);
-    }
-  }
-  useEffect(()=>{
-    getListContainers()
-    return()=>{
-    }
-  },[])
+  const rows = [{'name':'geth','status':'active','des':'geth', 'path':'/Users/winniewang/Documents/Code/hebunker-docker/compose/el-geth'},{'name':'prysm','status':'active','des':'io','path':'/Users/winniewang/Documents/Code/hebunker-docker/compose/cl-prysm-beacon'}];
 
   return (
     <Layout>
@@ -57,7 +41,7 @@ export function Manage() {
                   <TableCell align="left">{row.des}</TableCell>
                   <TableCell align="left">{row.status}</TableCell>
                   <TableCell align="center">
-                    <AppOperatorItem appId={row.name}/>
+                    <AppOperatorItem appInfo={row}/>
                   </TableCell>
                   <TableCell align="left">
                     <Button size='small' sx={{bgcolor:'#bfdbfe', gap:1, display:'flex', alignItems:'center'}}>
@@ -70,16 +54,6 @@ export function Manage() {
             </TableBody>
           </Table>
         </TableContainer>
-        <h4>Docker Containers</h4>
-        <ul>
-          {containers.map((container:any) => (
-            <li key={container.Id}>
-              {container.Names[0]} - {container.State}
-              <button onClick={() => {}}>Start</button>
-              <button onClick={() => {}}>Stop</button>
-            </li>
-          ))}
-      </ul>
         </Box>
     </Layout>
   );

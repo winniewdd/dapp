@@ -1,6 +1,7 @@
 ## Install
 
 Clone the repo and install dependencies:
+node > 20
 
 ```bash
 npm install

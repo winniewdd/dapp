@@ -1,7 +1,8 @@
 import { menus } from './MENU';
 import { Box, Grid, } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import icon from '../../assets/icon.png'
+import icon from '../../assets/icon.png';
+import bitIcon from '../../assets/bit.jpg';
 import { ActivityLogIcon } from '@radix-ui/react-icons'
 
 export default function Sidebar() {
@@ -11,7 +12,7 @@ export default function Sidebar() {
   return (
     <Box sx={{  minWidth: drawerWidth, bgcolor:'#bfdbfe', height:screen}}>
       <Box textAlign={'center'} mt={2}>
-        <img src={icon} alt='logo' width={'90px'} style={{display: 'block', margin: '0 auto', textAlign: 'center' }}/>
+        <img src={bitIcon} alt='logo' width={'90px'} style={{display: 'block', margin: '0 auto', textAlign: 'center' }}/>
       </Box>
       <Box sx={{ overflow: 'auto',gap:2}}>
         {

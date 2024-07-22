@@ -29,6 +29,8 @@ const electronHandler = {
   startContainer: (containerId: any) => ipcRenderer.invoke('start-container', containerId),
   stopContainer: (containerId: any) => ipcRenderer.invoke('stop-container', containerId),
   checkContainerStatus: (containerId: any) => ipcRenderer.invoke('check-container', containerId),
+  startCompose: (projectName:any, filePath: any) => ipcRenderer.invoke('start-compose', projectName,filePath),
+  stopCompose: (projectName:any, filePath: any) => ipcRenderer.invoke('stop-compose',  projectName,filePath),
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);

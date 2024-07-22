@@ -15,6 +15,10 @@ import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 const { listContainers, startContainer, stopContainer, dockerService, listImages, checkContainerStatus,createContainer } = require('../hooks/docker');
+const {startCompose, stopCompose} = require('../hooks/docker-compose')
+
+const dockerComposePath = '/usr/local/bin'; // 根据你的系统调整路径
+process.env.PATH = `${process.env.PATH}:${dockerComposePath}`;
 
 class AppUpdater {
   constructor() {
@@ -32,6 +36,7 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
+//操作docker
 ipcMain.handle('list-containers', async () => {
   return listContainers();
 });
@@ -57,6 +62,14 @@ ipcMain.handle('check-docker-service', async () => {
 
 ipcMain.handle('list-images', async () => {
   return listImages();
+});
+
+ipcMain.handle('start-compose', async (event, projectName, filePath) => {
+    return startCompose(projectName, filePath);
+});
+
+ipcMain.handle('stop-compose', async (event, projectName, filePath) => {
+  return stopCompose(projectName, filePath);
 });
 
 if (process.env.NODE_ENV === 'production') {
