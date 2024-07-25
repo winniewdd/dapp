@@ -16,6 +16,11 @@ import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 const { listContainers, startContainer, stopContainer, dockerService, listImages, checkContainerStatus,createContainer } = require('../hooks/docker');
 const {startCompose, stopCompose} = require('../hooks/docker-compose')
+const isCli = process.argv.includes('--cli');
+if (isCli) {
+  require('../hooks/linux-cli');
+  process.exit(0);
+}
 
 const dockerComposePath = '/usr/local/bin'; // 根据你的系统调整路径
 process.env.PATH = `${process.env.PATH}:${dockerComposePath}`;

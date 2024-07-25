@@ -111,7 +111,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.1",
-    "sonner": "^1.5.0"
+    "sonner": "^1.5.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@electron/notarize": "^2.1.0",
@@ -226,7 +227,9 @@
     },
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb",
+        "rpm"
       ],
       "category": "Development"
     },
